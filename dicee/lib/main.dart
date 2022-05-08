@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,22 +26,24 @@ class DicePage extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Image.asset('images/dice1.png'),
-            ),
+            child: FlatButton(
+                onPressed: () {
+                  // ignore: avoid_print
+                  print('left button is clicked');
+                },
+                child: Image.asset('images/dice1.png')),
           ),
           const SizedBox(width: 10.0),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Image.asset('images/dice1.png'),
-            ),
+            child: FlatButton(
+                onPressed: () {
+                  // ignore: avoid_print
+                  print('right button is clicked');
+                },
+                child: Image.asset('images/dice1.png')),
           ),
         ],
       ),
     );
   }
 }
-
-class Centre {}
