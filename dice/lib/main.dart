@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const myApp());
+  return runApp(
+    MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.red,
+        appBar: AppBar(
+          title: const Text('Dicee'),
+          backgroundColor: Colors.red,
+        ),
+        body: const DicePage(),
+      ),
+    ),
+  );
 }
 
-class myApp extends StatelessWidget {
-  const myApp({Key? key}) : super(key: key);
+class DicePage extends StatelessWidget {
+  const DicePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.orangeAccent,
-        appBar: AppBar(
-          title: const Text('gg'),
-          backgroundColor: Colors.amberAccent,
-        ),
-      ),
-    );
+    return Container();
   }
 }
