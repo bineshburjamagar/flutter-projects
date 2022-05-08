@@ -30,7 +30,6 @@ class _DicePageState extends State<DicePage> {
   var rightDiceNumber = 2;
   void randomNum() {
     setState(() {
-      randomNum();
       rightDiceNumber = Random().nextInt(6) + 1;
       leftDiceNumber = Random().nextInt(6) + 1;
     });
