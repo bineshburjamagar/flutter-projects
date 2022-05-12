@@ -1,8 +1,7 @@
-// ignore_for_file: deprecated_member_use, unnecessary_new
-
-import 'dart:math';
+// ignore_for_file: unnecessary_new, deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'question.dart';
 
 void main() => runApp(const Quizzler());
 
@@ -33,13 +32,13 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
-  ];
-  List<bool> answers = [false, true, true];
 
+  List<Questions> questionBank = [
+    Questions('You can lead a cow down stairs but not up stairs.', false),
+    Questions(
+        'Approximately one quarter of human bones are in the feet.', true),
+    Questions('A slug\'s blood is green.', true)
+  ];
   int questionNumber = 0;
 
   @override
@@ -54,7 +53,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber],
+                questionBank[questionNumber].questionsText,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 25.0, color: Colors.white60),
               ),
@@ -77,7 +76,8 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswers = answers[questionNumber];
+                bool correctAnswers =
+                    questionBank[questionNumber].questionsAnswers;
                 if (correctAnswers == true) {
                   // ignore: avoid_print
                   print('correct');
@@ -109,7 +109,8 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswers = answers[questionNumber];
+                bool correctAnswers =
+                    questionBank[questionNumber].questionsAnswers;
                 if (correctAnswers == false) {
                   // ignore: avoid_print
                   print('correct');
