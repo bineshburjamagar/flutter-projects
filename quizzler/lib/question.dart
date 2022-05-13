@@ -1,8 +1,6 @@
-import 'dart:ffi';
-
-class Questions {
+class Question {
   String questionsText;
   bool questionsAnswers;
 
-  Questions(this.questionsText, this.questionsAnswers);
+  Question(this.questionsText, this.questionsAnswers);
 }
