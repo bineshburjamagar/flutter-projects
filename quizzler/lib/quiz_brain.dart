@@ -43,4 +43,18 @@ class QuizBrain {
   bool getCorrectAnswers() {
     return _questionBank[_questionNumber].questionsAnswers;
   }
+
+  bool isFinished() {
+    if (_questionNumber >= _questionBank.length - 1) {
+      // ignore: avoid_print
+      print('bhairacha');
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void reset() {
+    _questionNumber = 0;
+  }
 }

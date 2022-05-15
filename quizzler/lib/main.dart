@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_new, deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'quiz_brain.dart';
 
 QuizBrain quizBrain = QuizBrain();
@@ -38,21 +39,31 @@ class _QuizPageState extends State<QuizPage> {
   void checkAnnswers(bool userPickedAnswer) {
     bool correctAnswers = quizBrain.getCorrectAnswers();
     setState(() {
-      if (userPickedAnswer == correctAnswers) {
-        // ignore: avoid_print
-        scoreKeeper.add(const Icon(
-          Icons.check,
-          color: Colors.green,
-        ));
+      if (quizBrain.isFinished() == true) {
+        Alert(
+          context: context,
+          title: 'Finished!',
+          desc: 'You\'ve reached the end of the quiz.',
+        ).show();
+        quizBrain.reset();
+        scoreKeeper = [];
       } else {
-        // ignore: avoid_print
-        scoreKeeper.add(const Icon(
-          Icons.close,
-          color: Colors.red,
-        ));
-      }
+        if (userPickedAnswer == correctAnswers) {
+          // ignore: avoid_print
+          scoreKeeper.add(const Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
+        } else {
+          // ignore: avoid_print
+          scoreKeeper.add(const Icon(
+            Icons.close,
+            color: Colors.red,
+          ));
+        }
 
-      quizBrain.nextQuestions();
+        quizBrain.nextQuestions();
+      }
     });
   }
 
