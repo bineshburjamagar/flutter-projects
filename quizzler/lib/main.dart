@@ -35,7 +35,26 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  int questionNumber = 0;
+  void checkAnnswers(bool userPickedAnswer) {
+    bool correctAnswers = quizBrain.getCorrectAnswers();
+    setState(() {
+      if (userPickedAnswer == correctAnswers) {
+        // ignore: avoid_print
+        scoreKeeper.add(const Icon(
+          Icons.check,
+          color: Colors.green,
+        ));
+      } else {
+        // ignore: avoid_print
+        scoreKeeper.add(const Icon(
+          Icons.close,
+          color: Colors.red,
+        ));
+      }
+
+      quizBrain.nextQuestions();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +68,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.getQuestionText(questionNumber),
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 25.0, color: Colors.white60),
               ),
@@ -72,18 +91,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswers =
-                    quizBrain.getCorrectAnswers(questionNumber);
-                if (correctAnswers == true) {
-                  // ignore: avoid_print
-                  print('correct');
-                } else {
-                  // ignore: avoid_print
-                  print('incorrect');
-                }
-                setState(() {
-                  questionNumber++;
-                });
+                checkAnnswers(true);
                 //gg
               },
             ),
@@ -105,23 +113,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswers =
-                    quizBrain.getCorrectAnswers(questionNumber);
-                if (correctAnswers == false) {
-                  // ignore: avoid_print
-                  print('correct');
-                } else {
-                  // ignore: avoid_print
-                  print('incorrect');
-                }
-                setState(() {
-                  // scoreKeeper.add(const Icon(
-                  //   Icons.close_outlined,
-                  //   color: Colors.red,
-                  // ));
-
-                  questionNumber++;
-                });
+                checkAnnswers(false);
               },
             ),
           ),
