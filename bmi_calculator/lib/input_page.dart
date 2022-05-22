@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+const bottomContainerHeight = 80.0;
+const bottomContainerColor = Color(0xFFA173E0);
+const activeCardColor = Color(0xFFEEDEF7);
+
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
 
@@ -12,7 +16,11 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BMI CALCULATOR'),
+        title: const Text(
+          'BMI CALCULATOR',
+          textAlign: TextAlign.center,
+        ),
+        toolbarHeight: 90.0,
       ),
       body: Column(
         children: [
@@ -21,11 +29,11 @@ class _InputPageState extends State<InputPage> {
               children: const [
                 Expanded(
                     child: ReusableCard(
-                  colour: Color(0xFFEEDEF7),
+                  colour: activeCardColor,
                 )),
                 Expanded(
                   child: ReusableCard(
-                    colour: Color(0xFFEEDEF7),
+                    colour: activeCardColor,
                   ),
                 )
               ],
@@ -33,23 +41,29 @@ class _InputPageState extends State<InputPage> {
           ),
           const Expanded(
               child: ReusableCard(
-            colour: Color(0xFFEEDEF7),
+            colour: activeCardColor,
           )),
           Expanded(
               child: Row(
             children: const [
               Expanded(
                 child: ReusableCard(
-                  colour: Color(0xFFEEDEF7),
+                  colour: activeCardColor,
                 ),
               ),
               Expanded(
                 child: ReusableCard(
-                  colour: Color(0xFFEEDEF7),
+                  colour: activeCardColor,
                 ),
               ),
             ],
           )),
+          Container(
+            color: bottomContainerColor,
+            margin: const EdgeInsets.only(top: 10.0),
+            width: double.infinity,
+            height: bottomContainerHeight,
+          )
         ],
       ),
     );
